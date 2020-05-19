@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "AdjustStockLevel.schema.json",
+    "title": "AdjustStockLevel",
+    "definitions": {
+        "AdjustStockLevel": {
+            "$id": "#AdjustStockLevel",
+            "description": "AdjustStockLevel is used to log and execute stock level change",
+            "type": "object",
+            "required": ["stockLevelTarget"],
+            "properties": {
+                "id": {
+                    "description": "Unique identifier of the AdjustStockLevel",
+                    "type": "string"
+                },
+                "href": {
+                    "description": "Reference of the AdjustStockItemLevel",
+                    "type": "string"
+                },
+                "state": {
+                    "$ref": "TaskStateType.schema.json#/definitions/TaskStateType",
+                    "description": "State of the AdjustStockLevel (acknowledged, inProgress, terminatedWithError, done)"
+                },
+                "description": {
+                    "description": "Free-text description of the AdjustStockLevel",
+                    "type": "string"
+                },
+                "creationDate": {
+                    "description": "Date when the AdjustStockLevel was created (whatever its status).",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "requestedAdjustStockLevelDate": {
+                    "description": "Date when the AdjustStockLevel was created (whatever its status).",
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "completedAdjustStockLevelDate": {
+                    "description": "Date when the AdjustStockLevel was created (whatever its status).",
+                    "type": "string",
+                    "format": "date-time"
+                },
+
+                "adjustReason": {
+                    "description": "A reason for this adjustment like theft or wastage.",
+                    "type": "string"
+                },
+
+                "adjustStockLeveltem": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "../Resource/AdjustStockLevelItem.schema.json#AdjustStockLevelItem"
+                    },
+                    "minItems": 1
+                  }
+            },
+            "allOf": [
+                {
+                    "$ref": "Entity.schema.json#/Entity"
+                }
+            ]
+        }
+    }
+}

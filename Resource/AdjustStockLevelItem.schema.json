@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "AdjustStockLevelItem.schema.json",
+  "title": "AdjustStockLevelItem",
+  "definitions": {
+    "AdjustStockLevelItem": {
+      "$id": "#AdjustStockLevelItem",
+      "description": "A list of AdjustStockLevel items. Every item is a product offering and its rank.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the product"
+        },
+        "adjustStockLevelQuantity": {
+            "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "state": {
+            "$ref": "TaskStateType.schema.json#/definitions/TaskStateType",
+            "description": "State of the AdjustStockLevel (acknowledged, inProgress, terminatedWithError, done)"
+        },
+        "stockLevelTarget": {
+          "$ref": "../Product/StockLevelRef.schema.json#StockLevelRef",
+          "description": "The stock level to adjust ."
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "../Common/Entity.schema.json#Entity"
+        }
+      ]
+    }
+  }
+}
